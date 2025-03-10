@@ -1,0 +1,86 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
+kind: template
+metadata:
+  name: common-git-repo-project
+  title: Common Git Repository Project
+  description: Template for a project that is hosted in a common git repository.
+  owner: Platform-Team
+  tags:
+    - github_common
+spec:
+  type: service
+
+  parameters:
+    - title: Fill up below options to create a new Common Git Repository Project
+      description: | 
+        There are actions you have to do:
+        - Add Repository name sticking to the standards of the company https://icis-lnrs.atlassian.net/wiki/spaces/ICISTECH/pages/38560624/GitHub+New+Repository+Naming+Convention+and+Configuration+Guidelines
+
+    - title: New Github repo settings
+      description: Github repo settings
+      required:
+        - assetId # This is the asset id for tags
+      properties: 
+        assetId:
+          title: Asset Id
+          type: string
+          description: Asset Id
+
+    - title: Configure
+      description: Where this repo will be created
+      required:
+        - repoUrl
+      properties: 
+        reminder: 
+          title: Reminder
+          type: string
+          description: |
+            Owner: LexisNexis-RBA
+            Repo Name: dsg-icis-<your name goes here>
+            Please follow naming convention: https://confluence.tools.cha.rbxd.ds/x/YoATKg
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedOrganizations: 
+              - LexisNexis-RBA
+            allowedHosts:
+              - github.com
+
+  # These steps are executed in the scaffolder backend, using data that we gathered
+  # via the parameters above.
+  steps:
+    # Each step executes an action, in this case one templates files into the working directory.
+    - id: fetch
+      name: Fetch application template
+      action: fetch:template
+      input:
+        url: .
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ["github.com"]
+        defaultBranch: 'main'
+        repoVisibility: internal
+        gitCommitMessage: 'initial commit [skip ci]'
+        description: This is where the code will be published to
+        repoUrl: ${{ parameters.repoUrl }}
+        collaborators: 
+          # you must have the first two!
+          - user: svc-icis-gh-auto
+            access: admin
+          - team: icis-admins
+            access: admin
+          - team: ICIS-Vikings-Admin
+            access: admin
+          - team: ICIS-Vikings
+            access: write
+
+  # Outputs are displayed to the user after a successful execution of the template.
+  output:
+    links:
+      - title: Repository
+        url: ${{ steps.publish.output.remoteUrl }}

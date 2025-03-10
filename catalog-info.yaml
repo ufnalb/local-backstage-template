@@ -7,7 +7,7 @@ metadata:
   description: Template for a project that is hosted in a common git repository.
   owner: Platform-Team
   tags:
-    - github_common
+    - github-common
 spec:
   type: service
 

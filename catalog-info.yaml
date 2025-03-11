@@ -13,32 +13,26 @@ spec:
 
   parameters:
     - title: Fill up below options to create a new Common Git Repository Project
-      description: | 
-        There are actions you have to do:
-        - Add Repository name sticking to the standards of the company https://icis-lnrs.atlassian.net/wiki/spaces/ICISTECH/pages/38560624/GitHub+New+Repository+Naming+Convention+and+Configuration+Guidelines
+      description: |
+        Repository Naming Convention
+        - Prefix with dsg-icis-
+          All repositories should begin with the prefix dsg-icis- This prefix identifies the repository as part of the DSG-ICIS market.
 
-    - title: New Github repo settings
-      description: Github repo settings
-      required:
-        - assetId # This is the asset id for tags
-      properties: 
-        assetId:
-          title: Asset Id
-          type: string
-          description: Asset Id
+        - Meaningful Repository Name
+          The repository name must be meaningful and relevant to the assets or components it contains. For example, if the repository contains plant-cost-evaluator-bff, the name should reflect that, e.g., dsg-icis-plant-cost-evaluator-bff
 
+        - Include the Component Type at the End
+          The repository name should include the component type at the end. This provides additional context about what the repository contains.
+
+        - Infra-related Repositories
+          For infrastructure-related repositories, the prefix should be dsg-icis-opsinf. These repositories deal with operational and infrastructure-related code or assets.
+          Example: dsg-icis-opsinf-kapowmodule
+          
     - title: Configure
       description: Where this repo will be created
       required:
         - repoUrl
       properties: 
-        reminder: 
-          title: Reminder
-          type: string
-          description: |
-            Owner: LexisNexis-RBA
-            Repo Name: dsg-icis-<your name goes here>
-            Please follow naming convention: https://confluence.tools.cha.rbxd.ds/x/YoATKg
         repoUrl:
           title: Repository Location
           type: string

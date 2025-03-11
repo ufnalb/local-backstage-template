@@ -17,6 +17,7 @@ spec:
         Repository Naming Convention
         - Prefix with dsg-icis-
           All repositories should begin with the prefix dsg-icis- This prefix identifies the repository as part of the DSG-ICIS market.
+          dsg-icis-<meaningful-name>-<component-type>
 
         - Meaningful Repository Name
           The repository name must be meaningful and relevant to the assets or components it contains. For example, if the repository contains plant-cost-evaluator-bff, the name should reflect that, e.g., dsg-icis-plant-cost-evaluator-bff

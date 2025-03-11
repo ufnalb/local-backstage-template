@@ -37,7 +37,7 @@ spec:
           title: Repository Location
           type: string
           ui:field: RepoUrlPicker
-          default: icis-dsg-<add_your_repo_name_here>
+          default: 	github.com?owner=LexisNexis-RBA&repo=dsg-icis-&organization=LexisNexis-RBA
           ui:options:
             allowedOrganizations: 
               - LexisNexis-RBA

@@ -37,6 +37,7 @@ spec:
           title: Repository Location
           type: string
           ui:field: RepoUrlPicker
+          default: icis-dsg-<add_your_repo_name_here>
           ui:options:
             allowedOrganizations: 
               - LexisNexis-RBA

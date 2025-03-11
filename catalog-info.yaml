@@ -52,7 +52,7 @@ spec:
       name: Fetch application template
       action: fetch:template
       input:
-        url: .
+        URL: ./content
     - id: publish
       name: Publish
       action: publish:github

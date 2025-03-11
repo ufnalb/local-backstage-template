@@ -33,16 +33,6 @@ spec:
       description: Where this repo will be created
       required:
         - repoUrl
-      properties:
-      group:
-        title: Squad group
-        type: string
-        description: Squad group
-      group_admin:
-        title: Squad Admin group
-        type: string
-        description: Squad Admin group
-
         repoUrl:
           title: Repository Location
           type: string
@@ -53,6 +43,15 @@ spec:
               - LexisNexis-RBA
             allowedHosts:
               - github.com
+      properties:
+        group:
+          title: Squad group
+          type: string
+          description: Squad group
+        group_admin:
+          title: Squad Admin group
+          type: string
+          description: Squad Admin group
 
   # These steps are executed in the scaffolder backend, using data that we gathered
   # via the parameters above.

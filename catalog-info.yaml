@@ -2,8 +2,8 @@ apiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
-  name: common-git-repo-project
-  title: Common Git Repository Project
+  name: create-empty-github-repository
+  title: Create empty github repository
   description: Template for a project that is hosted in a common git repository.
   owner: Platform-Team
   tags:
@@ -33,7 +33,16 @@ spec:
       description: Where this repo will be created
       required:
         - repoUrl
-      properties: 
+      properties:
+      group:
+        title: Squad group
+        type: string
+        description: Squad group
+      group_admin:
+        title: Squad Admin group
+        type: string
+        description: Squad Admin group
+
         repoUrl:
           title: Repository Location
           type: string
@@ -63,17 +72,17 @@ spec:
         repoVisibility: internal
         gitCommitMessage: 'initial commit [skip ci]'
         description: This is where the code will be published to
-        repoUrl: ${{ parameters.repoUrl }}
+        repoUrl: 'dsg-icis-${{ parameters.repoUrl }}'
         collaborators: 
           # you must have the first two!
           - user: svc-icis-gh-auto
             access: admin
           - team: icis-admins
             access: admin
-          - team: ICIS-Vikings-Admin
+          - team: ${{ parameters.group_admin | parseEntityRef | pick('name') }}
             access: admin
-          - team: ICIS-Vikings
-            access: write
+          - team: ${{ parameters.group | parseEntityRef | pick('name') }}
+            access: maintainer
 
   # Outputs are displayed to the user after a successful execution of the template.
   output:

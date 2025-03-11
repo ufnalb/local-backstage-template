@@ -33,17 +33,17 @@ spec:
       description: Where this repo will be created
       required:
         - repoUrl
+      properties:
         repoUrl:
           title: Repository Location
           type: string
           ui:field: RepoUrlPicker
-          default: 	github.com?owner=LexisNexis-RBA&repo=dsg-icis-&organization=LexisNexis-RBA
+          default: github.com?owner=LexisNexis-RBA&repo=dsg-icis-&organization=LexisNexis-RBA
           ui:options:
             allowedOrganizations: 
               - LexisNexis-RBA
             allowedHosts:
               - github.com
-      properties:
         group:
           title: Squad group
           type: string

@@ -74,7 +74,7 @@ spec:
       name: Publish
       action: publish:github
       input:
-        allowedHosts: ["github.com"]
+        allowedHosts: ["github.com", "gitlab.com"]
         defaultBranch: 'main'
         repoVisibility: internal
         gitCommitMessage: 'initial commit [skip ci]'

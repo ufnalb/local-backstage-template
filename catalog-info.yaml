@@ -48,10 +48,18 @@ spec:
           title: Squad group
           type: string
           description: Squad group
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
         group_admin:
           title: Squad Admin group
           type: string
           description: Squad Admin group
+          ui:field: OwnerPicker
+          ui:options:
+            catalogFilter:
+              kind: Group
 
   # These steps are executed in the scaffolder backend, using data that we gathered
   # via the parameters above.

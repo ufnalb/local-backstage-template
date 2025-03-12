@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: icis-opstribe-admins
+  description: Ops Tribe Admins
+spec:
+  type: github-team
+  profile:
+    displayName: ICIS OpsTribe Admins
+  children: [backstage]
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: icis-opstribe
+  description: Ops Tribe
+spec:
+  type: github-team
+  profile:
+    displayName: ICIS OpsTribe
+  children: [backstage]

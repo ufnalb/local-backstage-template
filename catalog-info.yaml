@@ -4,7 +4,7 @@ kind: Template
 metadata:
   name: create-empty-github-repository
   title: Create empty github repository
-  description: Template for a project that is hosted in a common git repository.
+  description: Template for a project hosted in a common git repository.
   owner: Platform-Team
   tags:
     - github-common
@@ -71,7 +71,7 @@ spec:
         repoVisibility: internal
         gitCommitMessage: 'initial commit [skip ci]'
         description: This is where the code will be published to
-        repoUrl: 'dsg-icis-${{ parameters.repoUrl }}'
+        repoUrl: ${{ parameters.repoUrl }}
         collaborators: 
           # you must have the first two!
           - user: svc-icis-gh-auto

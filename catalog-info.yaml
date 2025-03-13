@@ -2,12 +2,12 @@ apiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
-  name: create-empty-github-repository
-  title: Create empty github repository
-  description: Template will create empty github repository in 
+  name: Create empty Git repository
+  title: Common Git Repository Project
+  description: Template for a project that is hosted in a common git repository.
   owner: Platform-Team
   tags:
-    - github
+    - github-common
 spec:
   type: service
 
@@ -33,31 +33,17 @@ spec:
       description: Where this repo will be created
       required:
         - repoUrl
-      properties:
+      properties: 
         repoUrl:
           title: Repository Location
           type: string
           ui:field: RepoUrlPicker
-          default: github.com?owner=LexisNexis-RBA&repo=dsg-icis-&organization=LexisNexis-RBA
+          default: 	github.com?owner=LexisNexis-RBA&repo=dsg-icis-&organization=LexisNexis-RBA
           ui:options:
+            allowedOrganizations: 
+              - LexisNexis-RBA
             allowedHosts:
               - github.com
-        group:
-          title: Squad group
-          type: string
-          description: Squad group
-          ui:field: OwnerPicker
-          ui:options:
-            catalogFilter:
-              kind: Group
-        group_admin:
-          title: Squad Admin group
-          type: string
-          description: Squad Admin group
-          ui:field: OwnerPicker
-          ui:options:
-            catalogFilter:
-              kind: Group
 
   # These steps are executed in the scaffolder backend, using data that we gathered
   # via the parameters above.
@@ -73,10 +59,7 @@ spec:
       action: publish:github
       input:
         allowedHosts: ["github.com"]
-        allowedOrganizations: ["LexisNexis-RBA"]
         defaultBranch: 'main'
-        requireCodeOwnerReviews: true
-        requiredApprovingReviewCount: 2
         repoVisibility: internal
         gitCommitMessage: 'initial commit [skip ci]'
         description: This is where the code will be published to
@@ -87,10 +70,10 @@ spec:
             access: admin
           - team: icis-admins
             access: admin
-          - team: ${{ parameters.group_admin | parseEntityRef | pick('name') }}
+          - team: ICIS-Vikings-Admin
             access: admin
-          - team: ${{ parameters.group | parseEntityRef | pick('name') }}
-            access: maintainer
+          - team: ICIS-Vikings
+            access: write
 
   # Outputs are displayed to the user after a successful execution of the template.
   output:

@@ -4,10 +4,10 @@ kind: Template
 metadata:
   name: create-empty-github-repository
   title: Create empty github repository
-  description: Template for a project hosted in a common git repository.
+  description: Template will create empty github repository in 
   owner: Platform-Team
   tags:
-    - github-common
+    - github
 spec:
   type: service
 
@@ -40,8 +40,6 @@ spec:
           ui:field: RepoUrlPicker
           default: github.com?owner=LexisNexis-RBA&repo=dsg-icis-&organization=LexisNexis-RBA
           ui:options:
-            allowedOrganizations: 
-              - LexisNexis-RBA
             allowedHosts:
               - github.com
         group:
@@ -74,12 +72,13 @@ spec:
       name: Publish
       action: publish:github
       input:
-        allowedHosts: ["github.com", "gitlab.com"]
+        allowedHosts: ["github.com"]
+        allowedOrganizations: ["LexisNexis-RBA"]
         defaultBranch: 'main'
-        repoVisibility: internal
-        gitCommitMessage: 'initial commit [skip ci]'
         requireCodeOwnerReviews: true
         requiredApprovingReviewCount: 2
+        repoVisibility: internal
+        gitCommitMessage: 'initial commit [skip ci]'
         description: This is where the code will be published to
         repoUrl: ${{ parameters.repoUrl }}
         collaborators: 
